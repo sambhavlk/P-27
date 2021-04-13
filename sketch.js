@@ -25,14 +25,13 @@ function setup() {
 	b4 = new Bob(275, 400, 50)
 	b5 = new Bob(300, 400, 50)
 
-	roof = new Roof(400, 100, 500, 20)
+	roofObject = new Roof(400, 100, 500, 20)
 
-	r1 = new Rope(b1.body, roof.body, 50*2, 0)
-	r2 = new Rope(b2.body, roof.body, 50*2, 0)
-	r3 = new Rope(b3.body, roof.body, 50*2, 0)
-	r4 = new Rope(b4.body, roof.body, 50*2, 0)
-	r5 = new Rope(b5.body, roof.body, 50*2, 0)
-
+	r1=new rope(b1.body,roofObject.body,-80, 0)
+	r2=new rope(b2.body,roofObject.body,-40, 0)
+	r3=new rope(b3.body,roofObject.body,0, 0)
+	r4=new rope(b4.body,roofObject.body,40, 0)
+	r5=new rope(b5.body,roofObject.body,80, 0)
 	Engine.run(engine);
   
 }
@@ -40,9 +39,9 @@ function setup() {
 
 function draw() {
   rectMode(CENTER);
-  background(0);
+  background("lightblue");
   
-	roof.display();
+  roofObject.display();
 
 	b1.display();
 	b2.display();
@@ -56,8 +55,13 @@ function draw() {
 	r4.display();
 	r5.display();
 
+	drawSprites();
 
+}
 
-  drawSprites();
- 
+function keyPressed(){
+
+	if(keyCode === UP_ARROW){
+	Matter.Body.applyForce(b1.body, b1.body.position, {x:-50, y:-50})
+	}
 }
